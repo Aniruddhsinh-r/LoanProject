@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeoLoan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="Loanstyle.css">
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="alpine.js"></script>
+</head>
+<body class="max-w-[1400px] mx-auto bg-white" x-data="Loanweb">
+
+    <div x-data="{ loading: true }" x-init="setTimeout(() => loading = false, 1500)">
+    <div x-show="loading" x-transition.opacity class="fixed inset-0 z-50 flex items-center justify-center bg-white">
+            <div class="flex flex-col items-center">
+                <svg class="w-12 h-12 animate-spin text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                </svg>
+                <p class="mt-4 text-lg font-semibold text-gray-700 animate-pulse drop-shadow-lg">Please wait...</p>
+            </div>
+        </div>
+    </div>
+
+    <header class="bg-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <img src="https://cdn-icons-png.flaticon.com/512/5256/5256228.png" alt="WebLogo" class="w-10 h-10 object-contain"/>
+                <span class="text-2xl font-bold text-green-600 tracking-wide">NeoLoan</span>
+            </div>
+
+            <button id="menuToggle" class="text-gray-800 focus:outline-none">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                   <path d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <div id="mobileMenu" class="hidden">
+        <div class="fixed right-4 bg-white rounded-lg shadow-md p-4 space-y-3 w-fit">
+            <div class="flex items-center text-gray-800">
+                <i class="fas fa-phone-alt mr-2 text-lg text-gray-600"></i>
+                <a href="tel:+91-99983-78764" class="text-sm">+91-99983-78764</a>
+            </div>
+            <div class="flex items-center text-gray-800">
+                <i class="fas fa-envelope mr-2 text-lg text-gray-600"></i>
+                <a href="adaniruddha@gmail.com" class="text-sm">Contect me at Email</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="w-full h-[500px] sm:h-72 block sm:flex">
+        <div class="bg-[url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkFJqId8xCtDauvx3JErORTKISlrw7zztfug&s')] bg-cover bg-center w-full md:w-1/2 h-72 md:h-full flex items-center justify-center p-6">
+            <div class="text-center">
+                <h2 class="text-white text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight">
+                    Apply for a personal loan up to <span class="text-yellow-400 font-bold">₹10 Lakhs</span>
+                </h2><br>
+                <p class="text-white text-2xl  mt-3 font-medium">
+                    Interest rates starting at <span class="text-yellow-300 font-semibold">10.49% P.A.</span>
+                </p>
+            </div>
+        </div>
+        <div class="w-full sm:w-1/2 md:h-full p-3 min-[450px]:p-5 lg:p-9 flex justify-between">
+            <div class="w-64 h-52 bg-white rounded-2xl border-2 shadow-md advertisement">
+                <div class="w-full p-1 min-[340px]:p-2">
+                    <div class="flex justify-between">
+                        <span class="text-orange-600 text-xl sm:text-lg lg:text-2xl font-bold">Up to 10L</span>
+                        <img src="https://cdn.sanity.io/images/p4af87yj/old-production/030304bf3ad1c3b5812b80e1e397b681c712a56a-56x56.jpg?w=56&q=75&fit=clip&auto=format" alt="Tickimg" class="w-8 h-8 object-contain inline">
+                    </div>
+                    <span style="font-family: 'Lucida Sans', MS UI Gothic;">Max Loan amount</span>
+                    <div class="w-full flex flex-col items-center mt-3">
+                        <img src="https://cdn.prod.website-files.com/61e19bcaed30664e0ea1368d/62b3566e90a4bc8bb46b7203_tealfast.png" alt="image" class="w-[70px] h-[70px] object-contain shadow-lg">
+                        <span class="mt-2 text-sky-700 font-bold">Instant approval</span>
+                    </div>
+                </div>
+            </div>
+            <div class="w-64 h-2/3 rounded-2xl ml-3">
+                <div class="w-full h-24 p-2 rounded-2xl bg-white border-2 shadow-md advertisement">
+                    <div class="w-full h-1/2">
+                        <div class="flex justify-between">
+                            <span class="text-emerald-500 text-xl sm:text-lg lg:text-2xl font-bold">Flat off 250</span>
+                            <img src="https://cdn.sanity.io/images/p4af87yj/old-production/bff7c8123a8d966715d5cf19c8d8b40b4cca881c-56x56.jpg?w=56&q=75&fit=clip&auto=format" alt="image" class="w-8 h-8 object-contain inline">
+                        </div>
+                        <span style="font-family: 'Lucida Sans', MS UI Gothic;">NeuCoins*</span>
+                    </div>
+                </div>
+                <div class="w-full h-24 p-2 mt-4 rounded-2xl bg-white border-2 shadow-md advertisement">
+                    <div class="w-full h-1/2">
+                        <div class="flex justify-between">
+                            <span class="text-emerald-500 text-xl sm:text-lg lg:text-2xl font-bold">1 Lac+</span>
+                            <img src="https://cdn.sanity.io/images/p4af87yj/old-production/04dfbc1ca4ed680180dc243ff56c6a131a649a79-112x112.png?w=112&q=75&fit=clip&auto=format" alt="image" class="w-8 h-8 object-contain inline">
+                        </div>
+                        <span style="font-family: 'Lucida Sans', MS UI Gothic;">Happy Customers</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="w-full py-16">
+        <div class="w-full text-center">
+            <h1 class="text-2xl mx-14 sm:text-3xl md:text-[43px] font-bold" style="font-family: 'Poppins', sans-serif;">NeoLoan Personal Loan Criteria
+            </h1>
+            <span class="block w-28 h-[2px] bg-teal-500 mx-auto mt-2"></span></h1>
+        </div>
+        <div class="w-full"> 
+            <div class="px-8 sm:px-10 md:px-12 lg:px-20 mt-9">
+                <ul id="criteria" class="h-auto flex items-center flex-wrap">
+                    <li id="criteria1" style="background-color: rgb(255, 171, 16);">NeoLoan Criteria for salaride</li>
+                    <li id="criteria2">NeoLoan Personal Criteria for Self-Employed</li>
+                    <li id="criteria3">How it works</li>
+                </ul>
+                <div class="my-2">
+                    <div id="content1" class="flex flex-wrap justify-start w-full bg-white shadow-2xl rounded-xl p-6">
+                        <div class="flex w-full sm:w-[48%] lg:flex-1 my-2">
+                            <h5 class="w-full max-[400px]:text-sm text-xl sm:text-[16px] font-semibold border-r-2 min-[450px]:text-center sm:text-start">Minimum Salary : Rs. 15,000 Monthly</h5>
+                        </div>
+                        <div class="flex w-full sm:w-[48%] lg:flex-1 my-2">
+                            <h5 class="w-full max-[400px]:text-sm text-xl sm:text-[16px] font-semibold border-r-2 min-[450px]:text-center sm:text-start">Minimum 1 Year Job Stability</h5>
+                        </div>
+                        <div class="w-full sm:w-full lg:flex-1 my-2 ">
+                            <h5 class="font-semibold max-[400px]:text-sm text-xl sm:text-[16px] min-[450px]:text-center sm:text-start">Min. Age : 21 Years</h5>
+                        </div>
+                    </div>
+                    <div id="content2" class="hidden flex-wrap justify-start w-full bg-white shadow-2xl rounded-xl p-6">
+                        <div class="flex w-full sm:w-[48%] lg:flex-1 my-2">
+                            <h5 class="w-full max-[400px]:text-sm text-xl sm:text-[16px] font-semibold border-r-2 min-[450px]:text-center sm:text-start">Minimum 1 Year Business Stability</h5>
+                        </div>
+                        <div class="flex w-full sm:w-[48%] lg:flex-1 my-2">
+                            <h5 class="w-full max-[400px]:text-sm text-xl sm:text-[16px] font-semibold border-r-2 min-[450px]:text-center sm:text-start">Minimum 1 Year IT Return</h5>
+                        </div>
+                        <div class="w-full sm:w-full lg:flex-1 my-2 ">
+                            <h5 class="font-semibold max-[400px]:text-sm text-xl sm:text-[16px] min-[450px]:text-center sm:text-start">Min. Age : 21 Years</h5>
+                        </div>
+                    </div>
+                    <div id="content3" class="hidden flex-wrap justify-start w-full bg-white shadow-2xl rounded-xl p-6">
+                        <div class="flex w-full sm:w-[48%] lg:flex-1 my-2">
+                            <h5 class="w-full max-[400px]:text-sm text-xl sm:text-[16px] font-semibold border-r-2 min-[450px]:text-center sm:text-start">(1) Quick registration</h5>
+                        </div>
+                        <div class="flex w-full sm:w-[48%] lg:flex-1 my-2">
+                            <h5 class="w-full max-[400px]:text-sm text-xl sm:text-[16px] font-semibold border-r-2 min-[450px]:text-center sm:text-start">(2) Age Verification</h5>
+                        </div>
+                        <div class="w-full sm:w-full lg:flex-1 my-2 ">
+                            <h5 class="font-semibold max-[400px]:text-sm text-xl sm:text-[16px] min-[450px]:text-center sm:text-start">(3) Submit documents</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="EMIsection" class="w-full h-auto block min-[800px]:flex px-6 min-[500px]:px-16 min-[800px]:px-12 lg:px-20 bg-blue-200">
+        <div class="w-full min-[800px]:w-1/2 my-8 p-6 max-[800px]:p-10 max-[350px]:p-4 bg-white">
+            <div id="EMIselect">
+                <h2 class="text-4xl font-bold" style="font-family: 'Poppins', sans-serif;">EMI Calculator</h2>
+            </div>
+            <div class="my-3 flex justify-between mt-10">
+                <span class="w-auto">Loan amount</span>
+                <span class="w-auto" x-text="amount">&#8377;</span>
+            </div>
+            <span class="block"><input type="range" min="50000" max="1000000" step="1000" value="0" x-model="amount" class="slider w-full"></span>
+            <div class="my-3 flex justify-between">
+                <p>&#8377;50,000</p>
+                <p>&#8377;10,00,000</p>
+            </div>
+            <div class="my-3 flex justify-between mt-10">
+                <span class="w-auto">Select interest rate(%)</span>
+                <span class="w-auto" x-text="intrestRate"></span>
+            </div>
+            <span class="block"><input type="range" min="12" max="21" value="0" x-model="intrestRate" class="slider w-full"></span>
+            <div class="my-3 flex justify-between">
+                <p>12%</p>
+                <p>21%</p>
+            </div>
+            <div class="my-3 flex justify-between mt-10">
+                <span class="w-auto">Select EMI in Months</span>
+                <span class="w-auto" x-text="month"></span>
+            </div>
+            <span class="block"><input type="range" min="12" max="48" value="0" x-model="month" class="slider w-full"></span>
+            <div class="my-3 flex justify-between">
+                <p>12</p>
+                <p>48</p>
+            </div>
+        </div>
+        <div class="w-full min-[800px]:w-1/2 my-8 p-6 max-[800px]:p-10 max-[450px]:p-6 bg-white">
+            <div>
+                <h2 class="text-3xl font-bold py-3" style="font-family: 'Poppins', sans-serif;">monthly payable EMI</h2>
+            </div>
+            <div class="p-4">
+                <span>Principal amount</span>
+                <p x-text="amount"></p>
+            </div>
+            <div class="p-4">
+                <span>Interest amount</span>
+                <p x-text="'₹ ' + interestAmount"></p>
+            </div>
+            <div class="p-4">
+                <span>Total amount payable</span>
+                <p x-text="'₹ ' + totalPayable"></p>
+            </div>
+            <div class="p-4">
+                <span>Tenure (Months)</span>
+                <p x-text="month"></p>
+            </div>
+            <div class="p-4">
+                <span>Monthly EMI</span>
+                <p x-text="'₹ ' + emi"></p>
+            </div>
+        </div>
+    </section>
+
+    <section class="w-full h-auto block min-[800px]:flex px-4 min-[500px]:px-16 min-[800px]:px-12 lg:px-20 bg-amber-50">
+        <div class="w-full hidden sm:block min-[800px]:w-1/2 my-8 p-10 max-[800px]:p-10 max-[350px]:p-4 bg-white">
+            
+            <h3 class="text-4xl font-bold min-[800px]:text-2xl" style="font-family: 'Poppins', sans-serif;">Get instant personal loans upto <span class="text-yellow-300 font-semibold">Rs.10 Lakhs!</span></h3>
+            <h4 class="my-4 p-1 px-4 text-xl text-gray-800 font-semibold border-l-2 border-green-700">No Physical Documents | Instant Approvals</h4>
+            <span class="font-mono">Easy Process</span>
+            <p class="font-bold my-3 text-violet-950"><i class="fa-solid fa-circle-arrow-right"></i> Instant NBFC Pre-Approval</p>
+            <p class="font-bold my-3 text-green-500"><i class="fa-solid fa-circle-arrow-right"></i> Starting @ 12.5%</p>
+            <p class="font-bold my-3 text-red-600"><i class="fa-solid fa-circle-arrow-right"></i> Tenure up to 72 Months</p>
+        
+
+            <div class="flex mt-4 min-[800px]:hidden lg:flex">
+                <div class="w-48 min-h-60 m-2 p-4 shadow-md">
+                    <img src="https://cdn.sanity.io/images/p4af87yj/old-production/d3fe88c46c0a1e08485dafa86fdba8e0791f25f0-32x32.svg?w=32&q=75&fit=clip&auto=format" alt="image" class="w-16 h-16 inline">
+                    <span class=" ml-2 font-bold inline">Step 1</span>
+                    <div>
+                        <h4 class="font-semibold text-lg leading-6 my-3">Fill an online form</h4>
+                        <p class="text-gray-600">Fill form to apply for a loan. It just takes 2 minutes</p>
+                    </div>
+                </div>
+                <div class="w-48 min-h-60 m-2 p-4 shadow-md">
+                    <img src="https://cdn.sanity.io/images/p4af87yj/old-production/5dc5d8d8fdc2243d46b06b7c3776c9d458f4a417-70x70.svg?w=70&q=75&fit=clip&auto=format" alt="image" class="w-16 h-16 inline">
+                    <span class=" ml-2 font-bold inline">Step 2</span>
+                    <div>
+                        <h4 class="font-semibold text-lg leading-6 my-3">Complete your KYC</h4>
+                        <p class="text-gray-600">Apply via Pancard or KYC and share your bank details</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="w-full min-[800px]:w-1/2 my-8 p-6 max-[500px]:p-2 max-[800px]:p-6 max-[350px]:p-0 lg:p-12 bg-white">
+            <div>
+                <h2 class="px-4 text-xl max-[300px]:text-lg text-gray-800 font-semibold border-l-2 border-green-700" style="font-family: 'Poppins', sans-serif;">Start Your Loan Process With Few Details</h2>
+            </div>
+            <div class="p-2 max-[400px]:p-1 flex justify-center" x-data="kycForm">
+                <form class="bg-white shadow-lg rounded-lg p-6 max-[400px]:p-2 w-full max-w-md" @submit.prevent="submitForm">
+                    <h2 class="text-2xl font-bold mb-4 text-center text-green-700">KYC Form</h2>
+
+                    <div class="mb-4">
+                        <label class="block font-medium mb-1" for="Fname">Full Name</label>
+                        <input id="fullname" name="Fname" id="Fname" x-model="Fname" type="text" placeholder="Enter full name" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"><br>
+                        <template x-if="error.Fname">
+                            <p class="red" x-text="error.Fname"></p>
+                        </template>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block font-medium mb-1" for="mobile">Mobile No.</label>
+                        <input id="mobile" name="mobile" x-model="mobile" type="text" inputmode="numeric" maxlength="10" placeholder="Enter mobile no." class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500" @input="mobile = mobile.replace(/[^0-9]/g, '')"><br>
+                        <template x-if="error.mobile">
+                            <p class="red" x-text="error.mobile"></p>
+                        </template>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block font-medium mb-1" for="panNo">PAN No.</label>
+                        <input type="text" name="pan" id="panNo" x-model="pan" maxlength="10" placeholder="ABCDE1234F" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 outline-none uppercase text-sm"><br>
+                        <template x-if="error.pan">
+                            <p class="red" x-text="error.pan"></p>
+                        </template>
+                    </div>
+
+                    <div class="mb-4">
+                        <div class="flex items-center">
+                            <input id="terms" type="checkbox" x-model="condition1" class="min-h-4 min-w-4 text-green-600 border-gray-300 rounded focus:ring-green-500">
+                            <label for="terms" class="ml-2 text-xs">I agree to the terms and conditions</label>
+                        </div>
+                            <template x-if="error.condition1">
+                            <p class="red" x-text="error.condition1"></p>
+                        </template>
+                    </div>
+                    
+                    <div class="my-4">
+                        <div class="flex items-center">
+                            <input id="terms" type="checkbox" x-model="condition2" class="min-h-4 min-w-4 text-green-600 border-gray-300 rounded focus:ring-green-500">
+                            <label for="terms" class="ml-2 text-xs">I agree to receive promotional & informational communications from neoLone through SMS Services.</label>
+                        </div>
+                        <template x-if="error.condition2">
+                            <p class="red" x-text="error.condition2"></p>
+                        </template>
+                    </div>
+
+                    <button type="submit" class="w-full bg-green-700 hover:bg-green-800 text-white font-semibold py-2 rounded transition">Apply Now</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="w-full px-4 sm:px-8 md:px-2 lg:px-10 py-5">
+        <div class="w-full bg-white">
+            <h3 class="text-3xl font-bold p-6 max-[350px]:px-0">Customers Speak</h3>
+        </div>
+        <div class="relative max-w-7xl mx-auto flex items-center gap-4">
+            <button id="prevBtn" class="text-red-700 text-3xl px-0 min-[400px]:px-3 hover:scale-110">
+                &#10094;
+            </button>
+
+            <div id="reviewWrapper" class="w-full overflow-hidden bg-white lg:px-2">
+            <div id="reviewSlider" class="flex transition-transform duration-500 ease-in-out">
+                <div class="review-card bg-gray-100 h-96 p-4 shrink-0">
+                    <img src="https://www.thedownsizinginstitute.com/wp-content/uploads/2022/09/orange-quotation-marks-png-7-1030x773-1.png" alt="image" class="w-16 h-12 mb-4">
+                    <p>hi i am logan and i recently purchase rupees 5,00,000 loan and this group give me best and lowest intrest rated on my loan amount, Thanks to neoLoan app.</p>
+                    <span>Johad Logan</span>
+                    <samp>Country: america</samp>
+                </div>
+                <div class="review-card bg-gray-100 h-96 p-4 shrink-0">
+                    <img src="https://www.thedownsizinginstitute.com/wp-content/uploads/2022/09/orange-quotation-marks-png-7-1030x773-1.png" alt="image" class="w-16 h-12 mb-4">
+                    <p>NeoLoan made my loan approval quick and hassle-free. The EMI calculator was simple and helpful. I highly recommend this platform to others.</p>
+                    <span>Rahul Gadhvi</span>
+                    <samp>Country: japan</samp>
+                </div>
+                <div class="review-card bg-gray-100 h-96 p-4 shrink-0">
+                    <img src="https://www.thedownsizinginstitute.com/wp-content/uploads/2022/09/orange-quotation-marks-png-7-1030x773-1.png" alt="image" class="w-16 h-12 mb-4">
+                    <p>NeoLoan's online application was straightforward. I got my approval quickly, and the interest rates were fair. Excellent platform for urgent financial needs.</p>
+                    <span>Chuhan Jaydeepsinh</span>
+                    <samp>Country: India</samp>
+                </div>
+                <div class="review-card bg-gray-100 h-96 p-4 shrink-0">
+                    <img src="https://www.thedownsizinginstitute.com/wp-content/uploads/2022/09/orange-quotation-marks-png-7-1030x773-1.png" alt="image" class="w-16 h-12 mb-4">
+                    <p>I helped my cousin apply through NeoLoan. The process was smooth, transparent, and fast. Their support was helpful and everything worked perfectly online.</p>
+                    <span>Parmar Jaydeepsinh</span>
+                    <samp>Country: India</samp>
+                </div>
+                <div class="review-card bg-gray-100 h-96 p-4 shrink-0">
+                    <img src="https://www.thedownsizinginstitute.com/wp-content/uploads/2022/09/orange-quotation-marks-png-7-1030x773-1.png" alt="image" class="w-16 h-12 mb-4">
+                    <p>I applied for a loan during an emergency, and NeoLoan responded quickly. The app is modern, efficient, and completely trustworthy. Five-star experience overall.</p>
+                    <span>Rahul Gadhvi</span>
+                    <samp>Country: japan</samp>
+                </div>
+                <div class="review-card bg-gray-100 h-96 p-4 shrink-0">
+                    <img src="https://www.thedownsizinginstitute.com/wp-content/uploads/2022/09/orange-quotation-marks-png-7-1030x773-1.png" alt="image" class="w-16 h-12 mb-4">
+                    <p>NeoLoan made my entire loan process smooth and stress-free. I got approval in hours, and the interest rate was surprisingly low. Highly recommend it.</p>
+                    <span>Roman reigns</span>
+                    <samp>Country: UK</samp>
+                </div>
+                <div class="review-card bg-gray-100 h-96 p-4 shrink-0">
+                    <img src="https://www.thedownsizinginstitute.com/wp-content/uploads/2022/09/orange-quotation-marks-png-7-1030x773-1.png" alt="image" class="w-16 h-12 mb-4">
+                    <p>What I liked most about NeoLoan was the clarity. No hidden charges, no paperwork. Everything was online and completed in a few hours only.</p>
+                    <span>Emily Watson</span>
+                    <samp>Country: UAE</samp>
+                </div>
+            </div>
+            </div>
+
+            <button id="nextBtn" class="text-red-700 text-3xl px-0 min-[400px]:px-3 hover:scale-111">
+                &#10095;
+            </button>
+        </div>  
+    </section>
+
+    <section class="w-full px-4 sm:px-8 md:px-2 lg:px-10 pt-5">
+        <h3 class="text-3xl font-bold p-6 max-[350px]:px-0" style="font-family: 'Poppins', sans-serif;">Frequently Asked Questions</h3>
+
+        <div class="w-full  bg-white">
+            <div class="bg-gray-300 px-4 py-2 text-red-800 font-bold mb-4">
+                Still have questions? Get them answered right away, with our frequently asked questions.
+            </div>
+            <div class="my-2">
+                <div class="w-full h-auto border-b-2 py-1 flex justify-between border-b-gray-800 bg-gray-300">
+                    <span>What is personal loan.</span>
+                    <span class="icon">+</span>
+                </div>
+                <div style="font-family: Geneva, Verdana, sans-serif;" class="Answers hidden p-4 pt-1 text-gray-700">
+                    <p>A personal loan is an unsecured term loan provided by the bank that an individual can use as per his/her personal need. A personal loan unlike a home or car loan do not require lock in of any collateral by the applicant</p>
+                </div>
+            </div>
+            <div class="my-2">
+                <div class="w-full h-auto border-b-2 py-1 flex justify-between border-b-gray-800 bg-gray-300">
+                    <span>How do I check if I am eligible to apply for a personal loan? </span>
+                    <span class="icon">+</span>
+                </div>
+                <div style="font-family: Geneva, Verdana, sans-serif;" class="Answers hidden p-4 pt-1 text-gray-700">
+                    <p>Your eligibility depends on various factors, including a fixed monthly income, age, nature of employment, CIBIL score, professional experience, etc. Minimum eligibility for applying loan. <br>
+                        . Borrower should be an Indian National. <br>
+                        . Age - 18 to 60 Years</p>
+                </div>
+            </div>
+            <div class="my-2">
+                <div class="w-full h-auto border-b-2 py-1 flex justify-between border-b-gray-800 bg-gray-300">
+                    <span>Will there be any charges if i do not pay my dues on time? </span>
+                    <span class="icon">+</span>
+                </div>
+                <div style="font-family: Geneva, Verdana, sans-serif;" class="Answers hidden p-4 pt-1 text-gray-700">
+                    <p>Paying back your EMI dues on time is very important. Failing to pay back dues on time shall levy charges, impact your credit rating & you may face difficulties to avail credit in future. Charges shall be applicable as per lender policy.</p>
+                </div>
+            </div>
+            <div class="my-2">
+                <div class="w-full h-auto border-b-2 py-1 flex justify-between border-b-gray-800 bg-gray-300">
+                    <span>How long does it take to credit funds in my account?.</span>
+                    <span class="icon">+</span>
+                </div>
+                <div style="font-family: Geneva, Verdana, sans-serif;" class="Answers hidden p-4 pt-1 text-gray-700">
+                    <p>Loan application if approved shall be transferred to your account within 3-5 working days.</p>
+                </div>
+            </div>
+            <div class="my-2">
+                <div class="w-full h-auto border-b-2 py-1 flex justify-between border-b-gray-800 bg-gray-300">
+                    <span>What all documents are required during video KYC process? .</span>
+                    <span class="icon">+</span>
+                </div>
+                <div style="font-family: Geneva, Verdana, sans-serif;" class="Answers hidden p-4 pt-1 text-gray-700">
+                    <p>You would require Aadhaar Card and PAN Card. If your current address doesn’t match with your Aadhaar Address, you will need an additional current address proof (Driving License, Passport, etc.)</p>
+                </div>
+            </div>
+            <div class="my-2">
+                <div class="w-full h-auto border-b-2 py-1 flex justify-between border-b-gray-800 bg-gray-300">
+                    <span>What is the rate of interest applicable? .</span>
+                    <span class="icon">+</span>
+                </div>
+                <div style="font-family: Geneva, Verdana, sans-serif;" class="Answers hidden p-4 pt-1 text-gray-700">
+                    <p>Rate of interest will be 12.3% onwards. Applicable Government taxes, levies, etc. are over and above Fees & Charges.</p>
+                </div>
+            </div>
+            <div class="my-2">
+                <div class="w-full h-auto border-b-2 py-1 flex justify-between border-b-gray-800 bg-gray-300">
+                    <span>What security is needed to avail the loan? </span>
+                    <span class="icon">+</span>
+                </div>
+                <div style="font-family: Geneva, Verdana, sans-serif;" class="Answers hidden p-4 pt-1 text-gray-700">
+                    <p>To obtain the loan, there is absolutely no need to provide any security or collateral..</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-2 mt-8 mb-0">
+        <div class="w-full px-6 flex justify-between max-[520px]:block">
+            <div class="flex items-center">
+                <img src="https://cdn-icons-png.flaticon.com/512/5256/5256228.png" alt="WebLogo" class="w-20 h-20 object-contain"/>
+                <span class="text-2xl font-bold text-green-600 tracking-wide">NeoLoan</span>
+            </div>
+
+            <div class="text-left flex max-[700px]:block">
+                <div class="w-40">
+                    <h3 class="text-lg font-semibold">Customer care</h3>
+                    <span class="hover:text-gray-300 transition block"><a href="tel:+91-99983-78764">99983 78764</a></span>
+                </div>
+                <div class="w-64 max-[700px]:mt-4 max-[520px]:w-full ">
+                    <h3 class="text-lg font-semibold">Help & Support</h3>
+                    <p>Current status of this site is closed. Thank you for visiting and support.</p>
+                </div>        
+            </div>
+        </div>
+        <div class="mt-5 text-center text-sm text-gray-400">
+            &copy; <span x-text="year"></span> NeoLoan. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="scripts/Loanscript.js"></script>
+    <script src="scripts/Loanalpine.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#criteria1").click(function() {
+                $(this).css('background-color','orange').css('color','white');
+                $("#criteria2, #criteria3").removeAttr("style");
+                $('#content2,#content3').addClass('hidden');
+                $('#content1').removeClass('hidden').addClass('flex');
+            })
+            $("#criteria2").click(function() {
+                $(this).css('background-color','orange').css('color','white');
+                $("#criteria1, #criteria3").removeAttr("style");
+                $('#content1,#content3').addClass('hidden')
+                $('#content2').removeClass('hidden').addClass('flex');
+            })
+            $("#criteria3").click(function() {
+                $(this).css('background-color','orange').css('color','white');
+                $("#criteria1,#criteria2").removeAttr("style");
+                $('#content1,#content2').addClass('hidden');
+                $('#content3').removeClass('hidden').addClass('flex');  
+            })
+            $(".my-2").click(function() {
+                let answer = $(this).find(".Answers");
+                let icon = $(this).find(".icon");
+
+                if (answer.is(":visible")) {
+                    answer.slideUp();
+                    icon.text("+")
+                    return;
+                }
+                $(".Answers").slideUp();
+                $(".icon").text("+");
+                answer.slideDown();
+                icon.text("-");
+            })
+        })
+    </script>
+</body>
+</html>
