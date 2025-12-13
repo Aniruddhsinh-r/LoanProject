@@ -26,4 +26,3 @@ This project was created to showcase frontend development skills and UI design f
 
 ## 👤 Author
 **Rathod Aniruddhsinh**  
-GitHub: https://github.com/Aniruddhsinh-r
